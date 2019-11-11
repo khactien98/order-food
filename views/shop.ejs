@@ -14,13 +14,13 @@
                         <div class="col-lg-8 col-md-8 d-none d-md-block">
                             <div class="logo-menu-wrapper text-center">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <div class="main-menu">
                                     <nav>
                                         <ul>
 
-                                            <li><a href="#">Restaurant <i class="ion-ios-arrow-down"></i></a>
+                                            <li><a href="/">Restaurant <i class="ion-ios-arrow-down"></i></a>
                                                 <ul>
                                                     <% if(data) { %>
                                                     <%  data.restaurant.forEach(restaurant => { %>
@@ -86,9 +86,9 @@
                                 <div class="product-width col-md-6 col-xl-3 col-lg-4">
                                     <div class="product-wrapper mb-35">
                                         <div class="product-img">
-                                            <a href="#">
+                                          
                                                 <img src="assets/img/product/<%= product.image %>" alt="">
-                                            </a>
+                                          
                                             <!-- <div class="price-decrease">
                                                             <span>30% off</span>
                                                         </div> -->
@@ -96,19 +96,19 @@
                                         <div class="product-content">
                                             <div class="product-title-wishlist">
                                                 <div class="product-title-3">
-                                                    <h4><a href="product-details.html"><%= product.name %></a></h4>
+                                                    <h4><%= product.name %></h4>
                                                 </div>
                                             </div>
                                             <div class="product-title-3">
-                                                <h4><a href="product-details.html">Nhà hàng : <%= data.detail %></a>
+                                                <h4 style="margin: 0;">Nhà hàng : <%= data.detail %>
                                                 </h4>
                                             </div>
                                             <div class="product-peice-addtocart">
-                                                <div class="product-peice-3">
+                                                <div class="">
                                                     <span><%= product.price.toLocaleString() %> đ</span>
                                                 </div>
-                                                <div class="product-addtocart">
-                                                    <button id="buyFood" class="buyFood" price="<%= product.price %>"
+                                                <div class="">
+                                                    <button  class="btn btn-primary"  price="<%= product.price %>"
                                                         onclick="order('<%= product.id %>','<%= data.detail %>')">' <i
                                                             class="ti-shopping-cart"></i> Add to cart</button>
                                                 </div>
@@ -120,24 +120,7 @@
                                 <% });   %>
                                 <% } %>
                             </div>
-                            <div class="pagination-style text-center mt-30">
-                                <ul>
-                                    <li>
-                                        <a class="active" href="#">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ion-chevron-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                          
                         </div>
                     </div>
                 </div>
@@ -149,7 +132,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-toggle="modal" data-target="#myModal">
         <div class="modal-dialog modal-dialog-centered" role="document" style="min-width: 500px !important;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -185,8 +168,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
-        var socket = io.connect("http://localhost:4000");
-
+        var base_url = location.protocol + "//" + document.domain + ":" + location.port;
+        var socket = io.connect(base_url);
         $(document).ready(function () {
             $('#save').on('click', function () {
                 let data = {
@@ -223,14 +206,19 @@
 
             var user = getCookie("food");
             if (user != "") {
-                var data = {
-                    user: user,
-                    food: id,
-                    restaurant: restaurant
+                var getuser = JSON.parse(user);
+                if (getuser.userName != "" && getuser.address != "" && getuser.phone != "") {
+                    var data = {
+                        user: user,
+                        food: id,
+                        restaurant: restaurant
+                    }
+                    socket.emit("infoOrder", data);
+                } else {
+                    $('#exampleModalCenter').modal('show')
                 }
-                socket.emit("infoOrder", data);
             } else {
-                location.href = '/login';
+                $('#exampleModalCenter').modal('show')
             }
         }
         $(() => {

@@ -14,37 +14,38 @@
                         <div class="col-lg-8 col-md-8 d-none d-md-block">
                             <div class="logo-menu-wrapper text-center">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <div class="main-menu">
                                     <nav>
                                         <ul>
-                                           
-                                            <li><a href="#">Restaurant <i class="ion-ios-arrow-down"></i></a>
+
+                                            <li><a href="/">Restaurant <i class="ion-ios-arrow-down"></i></a>
                                                 <ul>
-                                                <% if(data) { %>
+                                                    <% if(data) { %>
                                                     <%  data.restaurant.forEach(restaurant => { %>
-                                                            <li><a href="/<%= restaurant.id %>"><%= restaurant.name %></a></li>
+                                                    <li><a href="/<%= restaurant.id %>"><%= restaurant.name %></a></li>
                                                     <% });   %>
                                                     <% } %>
                                                 </ul>
                                             </li>
-                                           
+
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                         </div>
-                     
+
                         <div class="col-lg-2 col-md-2 col-sm-7 col-7">
                             <div class="header-site-icon">
-                            
+
                                 <div class="header-login same-style">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                                <span class="ti-user"></span>
-                                            </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        <span class="ti-user"></span>
+                                    </button>
                                 </div>
-                              
+
                             </div>
                         </div>
                     </div>
@@ -85,28 +86,28 @@
                                 <div class="product-width col-md-6 col-xl-3 col-lg-4">
                                     <div class="product-wrapper mb-35">
                                         <div class="product-img">
-                                            <a href="#">
+                                          
                                                 <img src="assets/img/product/<%= product.prod.image %>" alt="">
-                                            </a>
-                                            <!-- <div class="price-decrease">
-                                                            <span>30% off</span>
-                                                        </div> -->
                                         </div>
                                         <div class="product-content">
                                             <div class="product-title-wishlist">
                                                 <div class="product-title-3">
-                                                    <h4><a href="product-details.html"><%= product.prod.name %></a></h4>
+                                                    <h4><%= product.prod.name %></h4>
                                                 </div>
                                             </div>
-                                            <div class="product-title-3">
-                                                <h4><a href="product-details.html">Nhà hàng : <%= product.restaurant.name %></a></h4>
+                                            <div class="product-title-3" >
+                                                <h4 style="margin: 0;">Nhà hàng :
+                                                        <%= product.restaurant.name %></h4>
                                             </div>
                                             <div class="product-peice-addtocart">
-                                                <div class="product-peice-3">
+                                                <div class="">
                                                     <span><%= product.prod.price.toLocaleString() %> đ</span>
                                                 </div>
-                                                <div class="product-addtocart">
-                                                    <button id="buyFood" class="buyFood" price="<%= product.prod.price %>" onclick="order('<%= product.prod.id %>','<%= product.restaurant.name%>')" >' <i class="ti-shopping-cart"></i> Add to cart</button>
+                                                <div class="">
+                                                    <button  class="btn btn-primary"
+                                                        price="<%= product.prod.price %>"
+                                                        onclick="order('<%= product.prod.id %>','<%= product.restaurant.name%>')">
+                                                        <i class="ti-shopping-cart"></i> Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,24 +117,6 @@
                                 <% });   %>
                                 <% } %>
                             </div>
-                            <div class="pagination-style text-center mt-30">
-                                <ul>
-                                    <li>
-                                        <a class="active" href="#">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ion-chevron-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,11 +124,11 @@
         </div>
     </div>
 
-   
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-toggle="modal" data-target="#myModal">
         <div class="modal-dialog modal-dialog-centered" role="document" style="min-width: 500px !important;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -177,11 +160,45 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-toggle="modal" data-target="#myModal">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="min-width: 500px !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form style="width: 100%;">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control is-invalid" id="useName" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="Adress">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Phone</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Phone">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="save" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
-        var socket = io.connect("http://localhost:4000");
+        var base_url = location.protocol + "//" + document.domain + ":" + location.port;
+        var socket = io.connect(base_url);
         $(document).ready(function () {
             $('#save').on('click', function () {
                 let data = {
@@ -189,16 +206,16 @@
                     address: $('#address').val(),
                     phone: $('#phone').val()
                 }
-                setCookie('food',data,1);
+                setCookie('food', data, 1);
                 location.href = '/'
             });
         });
-        function setCookie(cname,cvalue,exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = cname + "=" + JSON.stringify(cvalue) + ";" + expires + ";path=/";
-      }
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + JSON.stringify(cvalue) + ";" + expires + ";path=/";
+        }
         function getCookie(cname) {
             var name = cname + "=";
             var decodedCookie = decodeURIComponent(document.cookie);
@@ -214,32 +231,34 @@
             }
             return "";
         }
-        function order(id,restaurant) {
+        function order(id, restaurant) {
 
             var user = getCookie("food");
-            var getuser = JSON.parse(user);
-            //console.log(getuser)
-            if (getuser.userName != "" && getuser.address != "" && getuser.phone != "") {
-                var data = {
-                    user: user,
-                    food: id,
-                    restaurant: restaurant
+            if (user != "") {
+                var getuser = JSON.parse(user);
+                if (getuser.userName != "" && getuser.address != "" && getuser.phone != "") {
+                    var data = {
+                        user: user,
+                        food: id,
+                        restaurant: restaurant
+                    }
+                    socket.emit("infoOrder", data);
+                } else {
+                    $('#exampleModalCenter').modal('show')
                 }
-               socket.emit("infoOrder", data);
             } else {
-                location.href = '/login';
+                $('#exampleModalCenter').modal('show')
             }
         }
-        $(() =>{
-            
-            socket.on('order', (data) =>{
-                if($('div').is(`#${data.phone}`))
-                {
-                    $(`#${data.phone}`).append('<div  style="margin-top: 5px;"><img style="width: 50px;" src="assets/img/product/'+data.image+'"></div>');
+        $(() => {
+
+            socket.on('order', (data) => {
+                if ($('div').is(`#${data.phone}`)) {
+                    $(`#${data.phone}`).append('<div  style="margin-top: 5px;"><img style="width: 50px;" src="assets/img/product/' + data.image + '"></div>');
                 }
                 else
-                $('.listorder').append('<li  style="display: inline-block; width: 100%;"> <div style="float: left; padding-top: 5px;">' + data.user + '</div><div id ="' + data.phone + '" style="float: right;"><img style="width: 50px;" src="assets/img/product/'+data.image+'"></div></li>');
-             })
+                    $('.listorder').append('<li  style="display: inline-block; width: 100%;"> <div style="float: left; padding-top: 5px;">' + data.user + '</div><div id ="' + data.phone + '" style="float: right;"><img style="width: 50px;" src="assets/img/product/' + data.image + '"></div></li>');
+            })
         })
     </script>
 

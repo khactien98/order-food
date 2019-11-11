@@ -71,7 +71,7 @@ function getdate(){
 setTimeout(() =>{
   let date = getdate();
   fs.writeFileSync(`./data/bill/${date}_datcom.json`, JSON.stringify(bills), 'utf8');
-}, 40000);
+}, 60000);
 
 setInterval(async () =>{
   let date = getdate();
@@ -83,7 +83,7 @@ setInterval(async () =>{
     console.log('write file')
     fs.writeFileSync(`./data/bill/${date}_datcom.json`, JSON.stringify(bills), 'utf8');
   }
-},50000);
+},240000);
 
 setInterval(async () =>{
   var date = getdate();
@@ -96,10 +96,6 @@ setInterval(async () =>{
       }
     }
   }
-  else
-   {
-    console.log("Not new day");
-   }
 },1000);
 
 

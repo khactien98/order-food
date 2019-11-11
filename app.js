@@ -21,6 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/index'));
 
 
-http.listen(4000, () =>{
+http.listen(process.env.PORT || 4000, () =>{
   console.log("My app listen port 4000")
 })
