@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1",
+        "name": "Cơm cuộn",
+        "image": "p1.jpg",
+        "price": 30000,
+        "idRestaurant": 1
+    },
+    {
+        "id": "2",
+        "name": "Phở",
+        "image": "p2.jpg",
+        "price": 25000,
+        "idRestaurant": 1
+    },
+    {
+        "id": "3",
+        "name": "Lẩu",
+        "image": "p3.jpg",
+        "price": 300000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "4",
+        "name": "Cá Hồi",
+        "image": "p4.jpg",
+        "price": 200000,
+        "idRestaurant": 2
+    },
+    {
+        "id": "5",
+        "name": "Súp đậu",
+        "image": "p5.jpg",
+        "price": 300000,
+        "idRestaurant": 1
+    },
+    {
+        "id": "6",
+        "name": "Đồ cuốn",
+        "image": "p6.jpg",
+        "price": 200000,
+        "idRestaurant": 2
+    },
+    {
+        "id": "7",
+        "name": "Tôm",
+        "image": "p7.jpg",
+        "price": 250000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "8",
+        "name": "Sốt vang bò",
+        "image": "p8.jpg",
+        "price": 300000,
+        "idRestaurant": 3
+    }
+]
