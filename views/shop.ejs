@@ -176,11 +176,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         var base_url = location.protocol + "//" + document.domain + ":" + location.port;
+        function randomString() {
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var string_length = 8;
+            var randomstring = '';
+            for (var i = 0; i < string_length; i++) {
+                var rnum = Math.floor(Math.random() * chars.length);
+                randomstring += chars.substring(rnum, rnum + 1);
+            }
+            return randomstring;
+        }
         var socket = io.connect(base_url);
         $(document).ready(function () {
             $('#save').on('click', function () {
                 let data = {
                     userName: $('#useName').val(),
+                    id: randomString()
                 }
                 setCookie('food', data, 1);
                 $('#exampleModalCenter').modal('toggle')
