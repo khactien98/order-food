@@ -4,26 +4,33 @@ var fs = require('fs');
 
 
 router.get('/', async (req, res, next) =>{
+
+  function getdate(){
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+    newdate = year + "-" + month + "-" + day;
+    return newdate;
+  }
+    var listOder = await JSON.parse(fs.readFileSync(`./data/bill/${getdate()}_datcom.json`));
+    var order = await Object.entries(listOder);
   var product = await JSON.parse(fs.readFileSync('./data/product/product.json'));
   var restaurant = await JSON.parse(fs.readFileSync('./data/restaurant/restaurant.json'));
   let produ = [];
   
   for(let i = 0; i < product.length; i++){
-
     for(let j = 0 ; j < restaurant.length; j++){
-
       if(product[i].idRestaurant == restaurant[j].id){
-       
         let data = {
           prod: product[i],
           restaurant: restaurant[j]
         }
         produ.push(data);
-        //console.log(produ)
       }
     }
   }
-  res.render('show.ejs', {data: {product: produ, restaurant: restaurant}});
+  res.render('show.ejs', {data: {product: produ, restaurant: restaurant, listOder: order}});
 });
 
 
@@ -32,6 +39,16 @@ router.get('/login', async (req, res) =>{
 })
 
 router.get('/:id', async (req, res) =>{
+  function getdate(){
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+    newdate = year + "-" + month + "-" + day;
+    return newdate;
+  }
+    var listOder = await JSON.parse(fs.readFileSync(`./data/bill/${getdate()}_datcom.json`));
+    var order = await Object.entries(listOder);
   var product = await JSON.parse(fs.readFileSync('./data/product/product.json'));
   var restaurant = await JSON.parse(fs.readFileSync('./data/restaurant/restaurant.json'));
   let produ = [];
@@ -44,7 +61,7 @@ router.get('/:id', async (req, res) =>{
     if(element.id == req.params.id)
     restau = element.name;
   });
-  res.render('shop', {data: {product: produ, restaurant: restaurant, detail: restau}});
+  res.render('shop', {data: {product: produ, restaurant: restaurant, detail: restau, listOder: order}});
 })
 
 module.exports = router;
