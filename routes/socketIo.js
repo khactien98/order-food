@@ -92,7 +92,7 @@ setInterval(async () => {
   var date = getdate();
   if (!fs.existsSync(`./data/bill/${date}_datcom.json`)) {
     console.log("New day");
-    fs.writeFileSync(`./data/bill/${date}_datcom.json`, '', 'utf8');
+    fs.writeFileSync(`./data/bill/${date}_datcom.json`, JSON.stringify({__summary:{totalPrice:0,totalProuct:0}}), 'utf8');
     return bills = {
       __summary: {
         totalPrice: 0, totalProuct: 0

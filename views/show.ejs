@@ -76,8 +76,8 @@
                                 
                                 <li style="display: inline-block; width: 100%;">
                                         <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
-                                        <div style="float: left; padding-top: 5px;"><%= data.listOder[i][j].userName %></div>
-                                        <div id="<%= data.listOder[i][j].idUser %>" style="float: right;">
+                                        <div class="col-md-5" style="float: left; padding-top: 5px;"><%= data.listOder[i][j].userName %></div>
+                                        <div class="col-md-7" id="<%= data.listOder[i][j].idUser %>" style="float: right; padding: 0">
                                             <% data.listOder[i][j].products.forEach(product =>{ %>
                                             <div class="product" style="margin-bottom: 5px; overflow: auto;">
                                                 <div class="title" style="float: left; margin-right: 10px;"><%= product.nameFood %>: <%= product.price.toLocaleString() %>đ</div>
@@ -238,10 +238,10 @@
             socket.on('order', (data) => {
                 if ($('.listorder').text().indexOf(data.user) > -1) {
 
-                    $(` #${data.id}`).append('<div style="margin-bottom: 5px; overflow: auto;" class="product"><div class="title" style="float: left; margin-right: 10px;">' + data.nameFood + '' + '   ' + '' + data.price.toLocaleString() + '</div><div class="image" style="float: right"><img style="width: 50px;" src="assets/img/product/' + data.image + '"></div></div></div>');
+                    $(` #${data.id}`).append('<div style="margin-bottom: 5px; overflow: auto;" class="product"><div class="title" style="float: left; margin-right: 10px;">' + data.nameFood + '' + ' :  ' + '' + data.price.toLocaleString() + 'đ</div><div class="image" style="float: right"><img style="width: 50px;" src="assets/img/product/' + data.image + '"></div></div></div>');
                 }
                 else
-                    $('.listorder').append('<li  style="display: inline-block; width: 100%;"> <div style="float: left; padding-top: 5px;">' + data.user + '</div><div id ="' + data.id + '" style="float: right;"><div class="product" style="margin-bottom: 5px; overflow: auto;"><div class="title" style="float: left; margin-right: 10px;">' + data.nameFood + '' + '   ' + '' + data.price.toLocaleString() + '</div><div class="image" style="float: right"><img style="width: 50px; " src="assets/img/product/' + data.image + '"></div></div></div></li>');
+                    $('.listorder').append('<li  style="display: inline-block; width: 100%;"> <div class="col-md-5" style="float: left; padding-top: 5px;">' + data.user + '</div><div class="col-md-7" id ="' + data.id + '" style="float: right; padding: 0"><div class="product" style="margin-bottom: 5px; overflow: auto;"><div class="title" style="float: left; margin-right: 10px;">' + data.nameFood + '' + ' :  ' + '' + data.price.toLocaleString() + 'đ</div><div class="image" style="float: right"><img style="width: 50px; " src="assets/img/product/' + data.image + '"></div></div></div></li>');
             })
         })
     </script>
