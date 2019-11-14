@@ -1,58 +1,130 @@
 [
     {
         "id": "1",
-        "name": "Cơm cuộn",
+        "name": "Cơm Trứng + Đậu Sốt",
         "image": "p1.jpg",
-        "price": 30000,
+        "price": 25000,
         "idRestaurant": 1
     },
     {
         "id": "2",
-        "name": "Phở",
+        "name": "Cơm Trứng Đúc Thịt",
         "image": "p2.jpg",
         "price": 25000,
         "idRestaurant": 1
     },
     {
         "id": "3",
-        "name": "Lẩu",
+        "name": "Cơm Chân Giò Luộc",
         "image": "p3.jpg",
-        "price": 300000,
+        "price": 25000,
         "idRestaurant": 3
     },
     {
         "id": "4",
-        "name": "Cá Hồi",
+        "name": "Cơm Nạc Vai Rim Tiêu",
         "image": "p4.jpg",
-        "price": 200000,
+        "price": 25000,
         "idRestaurant": 2
     },
     {
         "id": "5",
-        "name": "Súp đậu",
+        "name": "Cơm Ba Chỉ Cháy Cạnh",
+        "image": "p8.jpg",
+        "price": 25000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "6",
+        "name": "Cơm Gà Quay Sốt Nấm",
         "image": "p5.jpg",
         "price": 300000,
         "idRestaurant": 1
     },
     {
-        "id": "6",
-        "name": "Đồ cuốn",
+        "id": "7",
+        "name": "Cơm Sườn Chua Ngọt",
         "image": "p6.jpg",
-        "price": 200000,
+        "price": 30000,
         "idRestaurant": 2
     },
     {
-        "id": "7",
-        "name": "Tôm",
+        "id": "8",
+        "name": "Cơm Nạc Vai Sốt Cà Chua",
         "image": "p7.jpg",
-        "price": 250000,
+        "price": 30000,
         "idRestaurant": 3
     },
     {
-        "id": "8",
-        "name": "Sốt vang bò",
+        "id": "9",
+        "name": "Cơm Gà Rang Gừng",
+        "image": "p8.jpg",
+        "price": 30000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "10",
+        "name": "Cơm Gà Đùi Nấm",
+        "image": "p8.jpg",
+        "price": 30000,
+        "idRestaurant": 3
+    }
+    ,
+    {
+        "id": "11",
+        "name": "Cơm Bò Sả Ớt",
         "image": "p8.jpg",
         "price": 300000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "12",
+        "name": "Cơm Sườn Rim Tiêu",
+        "image": "p8.jpg",
+        "price": 300000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "13",
+        "name": "Cơm Bò Sốt Tiêu Đen",
+        "image": "p8.jpg",
+        "price": 35000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "14",
+        "name": "Cơm Cá Kho Tộ",
+        "image": "p8.jpg",
+        "price": 35000,
+        "idRestaurant": 3
+    }
+    ,
+    {
+        "id": "15",
+        "name": "Lẩu Thái",
+        "image": "p8.jpg",
+        "price": 69000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "16",
+        "name": "Lẩu Misa",
+        "image": "p8.jpg",
+        "price": 69000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "16",
+        "name": "Lẩu Chua Cay",
+        "image": "p8.jpg",
+        "price": 69000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "16",
+        "name": "Lẩu Kim Chi",
+        "image": "p8.jpg",
+        "price": 69000,
         "idRestaurant": 3
     }
 ]

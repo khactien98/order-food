@@ -1,0 +1,51 @@
+.row .sidebar h2 {
+    text-align: center;
+    padding-bottom: 8px !important;
+}
+
+.list-product .product{
+    margin-bottom: 20px;
+}
+.list-product .product .card-body{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    
+}
+.list-product .product .card-body .description{
+    margin-top: 10px;
+}
+.list-product .product .card-body .description .nameFood{
+    font-size: large;
+    font-weight: 500;
+}
+.listOder:first-child .userOrder{
+    padding: 0 0 20px 20px !important;
+}
+
+.listOder{
+    display: inline-block; width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.listOder .userOrder{
+    padding: 20px 0 20px 20px;
+    width: 100%;
+    font-weight: 500;
+    font-size: large;
+}
+.listOder .listFood{ 
+    padding: 0
+}
+.listOder .listFood .product{
+    margin-bottom: 5px;
+     overflow: auto;
+}
+.listOder .listFood .product .title{
+    float: left; 
+    margin-right: 10px;
+}
+.listOder .listFood .product .image{float: right}
+.listOder .listFood .product .image img{width: 50px}
+
+.sum{
+    margin-top: 10px;
+}
