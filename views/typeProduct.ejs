@@ -18,15 +18,16 @@
                             <div class=" listFood" id="<%= data.listOder[i][j].idUser %>">
                                 <% data.listOder[i][j].products.forEach(product =>{ %>
                                 <div class="product">
-                                    <div class="title"><%= product.nameFood %>: <%= product.price.toLocaleString() %>đ
+                                    <div class="title"><%= product.nameFood %>: <span style="font-weight: 500;
+                                        text-decoration: underline;"><%= product.price.toLocaleString() %>đ</span>
                                     </div>
                                     <div class="image"><img src="assets/img/product/<%= product.image %>"></div>
                                 </div>
                                 <% })  %>
                             </div>
-                            <div class="sumProduct">
-                                <span>Total Product: <span class="productUser"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
-                                <span>Total Price: <span class="priceUser"><%= data.listOder[i][j].__summary.totalPrice %></span></span>
+                            <div class="sumUser">
+                                <span style="padding: 0 10px 0 10px;" >Total Product: <span class="product<%= data.listOder[i][j].idUser %>" style="font-weight: 500;"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
+                                <span>Total Price: <span class="price<%= data.listOder[i][j].idUser %>" style="font-weight: 500; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>
                             </div>
                             <% }  %>
                         </li>
@@ -203,17 +204,15 @@
         $(() => {
 
             socket.on('order', (data) => {
-                $('.productUser').text(data.summaryUser.totalProuct);
-                $('.priceUser').text(data.summaryUser.totalPrice);
                 $('.prouct').text(data.__summary.totalProuct);
-                $('.price').text(data.__summary.totalPrice)
+                $('.price').text(`${data.__summary.totalPrice.toLocaleString()}đ`)
                 if ($('.listorder').text().indexOf(data.user) > -1) {
-
-                    $(` #${data.id}`).append('<div class="product"><div class="title">' + data.nameFood + '' + ' :  ' + '' + data.price.toLocaleString() + 'đ</div><div class="image"><img src="assets/img/product/' + data.image + '"></div></div>');
+                    $(` #${data.id}`).append('<div class="product"><div class="title">' + data.nameFood + '' + ' :  <span style="font-weight: 500;text-decoration: underline;">' + data.price.toLocaleString() + 'đ</span></div><div class="image"><img src="assets/img/product/' + data.image + '"></div></div>');
+                    $(`.product${data.id}`).text(data.summaryUser.totalProuct);
+                    $(`.price${data.id}`).text(`${data.summaryUser.totalPrice.toLocaleString()}đ`);
                 }
                 else
-               
-                    $('.listorder').append(' <li class="nav-item listOder"><div class=" userOrder">' + data.user + '</div><div class=" listFood" id="' + data.id + '"><div class="product"><div class="title">' + data.nameFood + '' + ' :  ' + '' + data.price.toLocaleString() + 'đ</div><div class="image"><img src="assets/img/product/' + data.image + '"></div></div></div></li>');
+                    $('.listorder').append(' <li class="nav-item listOder"><div class=" userOrder">' + data.user + '</div><div class=" listFood" id="' + data.id + '"><div class="product"><div class="title">' + data.nameFood + '' + ' :  <span style="font-weight: 500;text-decoration: underline;">' + data.price.toLocaleString() + 'đ</span></div><div class="image"><img src="assets/img/product/' + data.image + '"></div></div></div>  <div class="sumUser"><span style="padding: 0 10px 0 10px;">Total Product: <span class="product'+data.id+'" style="font-weight: 500;">'+ data.summaryUser.totalProuct +'</span></span><span>Total Price: <span class="price'+data.id+'" style="font-weight: 500;text-decoration: underline;"> '+data.summaryUser.totalPrice.toLocaleString()+ 'đ</span></span></div></li>');
             })
         })
     </script>
