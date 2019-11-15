@@ -1,6 +1,4 @@
 var fs = require('fs');
-const NodeCache = require( "node-cache" );
-const myCache = new NodeCache();
 var bills = {};
 bills.__summary = {
   totalPrice: 0, totalProuct: 0
@@ -17,10 +15,12 @@ const order = async (io) => {
             idUser: result.idUser,
             products: [
               {
+                idfood: element.id,
                 image: element.image,
                 nameFood: element.name,
                 price: element.price,
                 restaurant: result.restaurant,
+                amount: 1
               }
             ],
             __summary: {
@@ -29,10 +29,12 @@ const order = async (io) => {
             }
           }
           let product = {
+            idfood: element.id,
             image: element.image,
             nameFood: element.name,
             price: element.price,
             restaurant: result.restaurant,
+            amount: 1
           }
           if (typeof bills[bill.userName] === "undefined") {
             bills[bill.userName] = bill;
@@ -40,13 +42,22 @@ const order = async (io) => {
             bills.__summary.totalProuct += 1;
           }
           else {
-            bills[bill.userName].products.push(product);
+           
+            let count = 0;
+            bills[bill.userName].products.forEach(el =>{
+              if(el.nameFood === element.name){
+                el.amount +=1;
+                return count = 1;
+              }
+            });
+            if(count === 0){bills[bill.userName].products.push(product);}
             bills[bill.userName].__summary.totalPrice += element.price;
             bills[bill.userName].__summary.totalProuct += 1;
             bills.__summary.totalPrice += element.price;
             bills.__summary.totalProuct += 1;
           }
           let data = {
+            idfood: element.id,
             image: element.image,
             user: result.user,
             id: result.idUser,
@@ -108,7 +119,10 @@ setInterval(async () => {
         totalPrice: 0, totalProuct: 0
       }
     }
+  }else{
+    console.log('ahihi')
   }
+ 
 }, 1000);
 setInterval(async () => {
   global.order = bills;
