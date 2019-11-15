@@ -38,7 +38,7 @@
         "id": "6",
         "name": "Cơm Gà Quay Sốt Nấm",
         "image": "p6.jpg",
-        "price": 300000,
+        "price": 30000,
         "idRestaurant": 1
     },
     {
@@ -74,14 +74,14 @@
         "id": "11",
         "name": "Cơm Bò Sả Ớt",
         "image": "p11.jpg",
-        "price": 300000,
+        "price": 30000,
         "idRestaurant": 3
     },
     {
         "id": "12",
         "name": "Cơm Sườn Rim Tiêu",
         "image": "p12.jpg",
-        "price": 300000,
+        "price": 30000,
         "idRestaurant": 3
     },
     {
