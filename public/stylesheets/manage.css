@@ -1,3 +1,9 @@
+hr{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
 .row .sidebar h2 {
     text-align: center;
     padding-bottom: 8px !important;
@@ -18,37 +24,100 @@
     font-size: large;
     font-weight: 500;
 }
+.listorder li:nth-child(even){
+    background: #edeff1;
+}
+.listorder li:nth-child(odd){
+    background: white;
+}
+.listorder li:nth-child(even) .listFood .product .icon a i{
+    color: #d2d5d8
+}
 .listOder:first-child .userOrder{
-    padding: 0 0 20px 20px !important;
+    padding: 10px 0 10px 0;
 }
 
 .listOder{
     display: inline-block; width: 100%;
     border-bottom: 1px solid rgba(0,0,0,.125);
+    margin-bottom: 15px;
+ 
 }
 .listOder .userOrder{
-    padding: 20px 0 20px 20px;
     width: 100%;
     font-weight: 500;
     font-size: large;
+    padding: 10px 0 10px 0;
+    text-align: center;
 }
 .listOder .listFood{ 
     padding: 0
 }
 .listOder .listFood .product{
-    margin-bottom: 5px;
+
      overflow: auto;
+     border-radius: 2px;
+     display: flex;
+     margin-top: 5px;
+     margin-bottom: 5px;
+     border: 0;
+     border-top: 1px solid rgba(0,0,0,.1);
+     padding: 5px 0 5px 0;
 }
+.listOder .listFood .product:last-child{
+
+    overflow: auto;
+    border-radius: 2px;
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 5px 0 5px 0;
+}
+
 .listOder .listFood .product .title{
-    float: left; 
-    margin-right: 10px;
+    float: left;
+    display: grid;
+    padding: 5px 5px 5px 10px;
 }
-.listOder .listFood .product .image{float: right}
-.listOder .listFood .product .image img{width: 50px}
+.listOder .listFood .product .image{
+    float: left;
+    width: 60px;
+    height: 58px;
+   
+    padding: 0;
+}
+.listOder .listFood .product .icon{
+    margin: auto 0;
+    float: right;
+    font-size: 20px;
+}
+.listOder .listFood .product .icon a i{
+    color: #dde1e5;
+}
+.listOder .listFood .product .image img{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
 
 .sum{
     margin-top: 10px;
 }
 .sumUser{
     margin-bottom: 10px;
+}
+.sumUser span:first-child{
+    padding: 0 10px 0 10px;
+}
+.prouct-count{
+    color: #d30808;
+    font-weight: 600;
+}
+.price-count{
+    color: #d30808;
+    font-weight: 600; 
+    text-decoration: underline;
 }

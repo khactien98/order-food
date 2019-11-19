@@ -1,8 +1,11 @@
 var fs = require('fs');
+
+//create variable storage
 var bills = {};
 bills.__summary = {
   totalPrice: 0, totalProuct: 0
 }
+
 const order = async (io) => {
   var product = JSON.parse(fs.readFileSync('./data/product/product.json'));
   io.on('connection', function (socket) {
@@ -42,7 +45,6 @@ const order = async (io) => {
             bills.__summary.totalProuct += 1;
           }
           else {
-           
             let count = 0;
             bills[bill.userName].products.forEach(el =>{
               if(el.nameFood === element.name){
@@ -76,6 +78,33 @@ const order = async (io) => {
           socket.broadcast.emit("order", data)
         }
       })
+    })
+    socket.on('deleteOrder', async (result) =>{
+      if (typeof bills[result.user] != "undefined"){
+        for(let i = 0; i < bills[result.user].products.length ; i++)
+          if(bills[result.user].products[i].idfood === result.idfood){
+            bills[result.user].__summary.totalProuct -= bills[result.user].products[i].amount;
+            bills[result.user].__summary.totalPrice -= bills[result.user].products[i].price * bills[result.user].products[i].amount;
+            bills.__summary.totalPrice -= bills[result.user].products[i].price * bills[result.user].products[i].amount;
+            bills.__summary.totalProuct -= bills[result.user].products[i].amount;
+            bills[result.user].products.splice(i, 1);
+            var data = {
+              user: result.user,
+              id: result.idUser,
+              idfood: result.idfood,
+              __summary: {
+                totalPrice: bills.__summary.totalPrice,
+                totalProuct: bills.__summary.totalProuct
+              },
+              summaryUser:{
+                totalPrice: bills[result.user].__summary.totalPrice,
+                totalProuct: bills[result.user].__summary.totalProuct
+              },
+            }
+            socket.emit('orderDele', data);
+            socket.broadcast.emit("orderDele", data);
+          }
+      }
     })
     socket.on('disconnect', function () {
       console.log('user disconnected');
@@ -119,10 +148,7 @@ setInterval(async () => {
         totalPrice: 0, totalProuct: 0
       }
     }
-  }else{
-    console.log('ahihi')
   }
- 
 }, 1000);
 setInterval(async () => {
   global.order = bills;
