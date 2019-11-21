@@ -21,6 +21,13 @@
         "idRestaurant": 3
     },
     {
+        "id": "18",
+        "name": "Cơm Trứng Sốt Cà Chua",
+        "image": "p18.jpg",
+        "price": 25000,
+        "idRestaurant": 1
+    },
+    {
         "id": "4",
         "name": "Cơm Nạc Vai Rim Tiêu",
         "image": "p4.jpg",
@@ -49,6 +56,34 @@
         "idRestaurant": 2
     },
     {
+        "id": "12",
+        "name": "Cơm Sườn Rim Tiêu",
+        "image": "p12.jpg",
+        "price": 30000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "15",
+        "name": "Cơm Gà Chiên Mắm Tỏi",
+        "image": "p15.jpg",
+        "price": 30000,
+        "idRestaurant": 1
+    },
+    {
+        "id": "16",
+        "name": "Cơm Gà Sốt Chua Ngọt",
+        "image": "p16.jpg",
+        "price": 30000,
+        "idRestaurant": 1
+    },
+    {
+        "id": "17",
+        "name": "Cơm Gà Quay Sốt BBQ",
+        "image": "p17.jpg",
+        "price": 30000,
+        "idRestaurant": 1
+    },
+    {
         "id": "8",
         "name": "Nạc Vai Sốt Cà Chua",
         "image": "p8.jpg",
@@ -74,16 +109,10 @@
         "id": "11",
         "name": "Cơm Bò Sả Ớt",
         "image": "p11.jpg",
-        "price": 30000,
+        "price": 35000,
         "idRestaurant": 3
     },
-    {
-        "id": "12",
-        "name": "Cơm Sườn Rim Tiêu",
-        "image": "p12.jpg",
-        "price": 30000,
-        "idRestaurant": 3
-    },
+   
     {
         "id": "13",
         "name": "Cơm Bò Sốt Tiêu Đen",
@@ -97,34 +126,19 @@
         "image": "p14.jpg",
         "price": 35000,
         "idRestaurant": 3
-    }
-    ,
-    {
-        "id": "15",
-        "name": "Lẩu Thái",
-        "image": "p15.jpeg",
-        "price": 69000,
-        "idRestaurant": 3
     },
     {
-        "id": "16",
-        "name": "Lẩu Misa",
-        "image": "p16.jpg",
-        "price": 69000,
-        "idRestaurant": 3
+        "id": "19",
+        "name": "Cơm Tim Cật Xào Tỏi",
+        "image": "p19.jpg",
+        "price": 35000,
+        "idRestaurant": 1
     },
     {
-        "id": "17",
-        "name": "Lẩu Chua Cay",
-        "image": "p17.jpg",
-        "price": 69000,
-        "idRestaurant": 3
-    },
-    {
-        "id": "18",
-        "name": "Lẩu Kim Chi",
-        "image": "p18.jpg",
-        "price": 69000,
-        "idRestaurant": 3
+        "id": "20",
+        "name": "Cơm Bò Hầm",
+        "image": "p20.jpg",
+        "price": 35000,
+        "idRestaurant": 1
     }
 ]

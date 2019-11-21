@@ -62,5 +62,4 @@ router.get('/:id', async (req, res) =>{
   res.render('typeProduct', {data: {product: produ, restaurant: restaurant, detail: restau, listOder: order}});
 })
 
-
 module.exports = router;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('layout/header'); %>
+<%- include('layout/header'); %>
+
 <body>
 
     <div class="container-fluid">
@@ -8,51 +9,61 @@
             <nav class="col-md-3 d-none d-md-block bg-light sidebar">
                 <h2 class="flex-wrap flex-md-nowrap pt-3  border-bottom h2">List Order</h2>
                 <div class="sidebar-sticky">
-                        <ul class="nav flex-column mt-3 listorder" data-spy="scroll" data-offset="0">
-                                <% if(data && data.listOder) { %>
-                                    <%  for(var i = 1; i < data.listOder.length; i++) { %>
-                                    <li class="nav-item listOder">
-                                        <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
-                                        <div class=" userOrder"><%= data.listOder[i][j].userName %></div><hr>
-                                        <div class=" listFood" id="<%= data.listOder[i][j].idUser %>">
-                                            <% data.listOder[i][j].products.forEach(product =>{ %>
-                                            <div class="product product-<%= product.idfood %>-<%= data.listOder[i][j].idUser %>">
-                                                <div class="col-md-2 image"><img src="assets/img/product/<%= product.image %>"></div>
-                                                <div class="col-md-8 title-<%= product.idfood %>-<%= data.listOder[i][j].idUser %> title">
-                                                    <span style="font-weight: 500;"><%= product.nameFood %></span>
-                                                    <span>
-                                                         <span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;"><%= product.amount %></span> x </span>
-                                                        <%= product.price.toLocaleString() %>đ
-                                                       
-                                                    </span>
-                                                </div>
-                                                <div class="col-md-2 icon"><a href="#" onclick="deleteOrder('<%= product.idfood %>-<%= data.listOder[i][j].idUser %>')"><i class="fas fa-minus-circle"></i></a></div>
-                                            </div>
-                                            <% })  %>
-                                        </div>
-                                        <div class="sumUser">
-                                            <span >Total Product: <span class="product<%= data.listOder[i][j].idUser %>" style="font-weight: 500;"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
-                                            <span>Total Price: <span class="price<%= data.listOder[i][j].idUser %>" style="font-weight: 500; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>
-                                        </div>
-                                        <% }  %>
-                                    </li>
-                                    <% }   %>
-                                    <% } %>
-                        </ul>
+                    <ul class="nav flex-column mt-3 listorder" data-spy="scroll" data-offset="0">
                         <% if(data && data.listOder) { %>
-                            <%  for(var i = 0; i < data.listOder.length; i++) { %>                
-                                     <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
-                                        <div class="sum">
-                                            <div class="d-flex flex-row-reverse ">
-                                                <span>Total Product: <span  class="prouct-count" style="color: #d30808;font-weight: 600;"><%= data.listOder[i][j].totalProuct%></span></span>
-                                            </div>
-                                            <div class="d-flex flex-row-reverse "> 
-                                                <span>Total Price: <span class="price-count" style="color: #d30808;font-weight: 600; text-decoration: underline;"><%= data.listOder[i][j].totalPrice.toLocaleString() %>đ</span></span>
-                                            </div>
-                                        </div>
-                                     <% break; } %>
-                            <%  break; } %>  
+                        <%  for(var i = 1; i < data.listOder.length; i++) { %>
+                        <li class="nav-item listOder">
+                            <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
+                            <div class=" userOrder"><%= data.listOder[i][j].userName %></div>
+                            <hr>
+                            <div class=" listFood" id="<%= data.listOder[i][j].idUser %>">
+                                <% data.listOder[i][j].products.forEach(product =>{ %>
+                                <div class="product product-<%= product.idfood %>-<%= data.listOder[i][j].idUser %>">
+                                    <div class="col-md-2 image"><img src="assets/img/product/<%= product.image %>">
+                                    </div>
+                                    <div
+                                        class="col-md-8 title-<%= product.idfood %>-<%= data.listOder[i][j].idUser %> title">
+                                        <span style="font-weight: 500;"><%= product.nameFood %></span>
+                                        <span>
+                                            <span style="color: #d30808;"><span class="amountOrder"
+                                                    style="color: #d30808;"><%= product.amount %></span> x </span>
+                                            <%= product.price.toLocaleString() %>đ
+
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2 icon icon-<%= data.listOder[i][j].idUser %>"><a href="#" title="Remove Food"
+                                            onclick="deleteOrder('<%= product.idfood %>-<%= data.listOder[i][j].idUser %>')"><i
+                                                class="fas fa-minus-circle"></i></a></div>
+                                </div>
+                                <% })  %>
+                            </div>
+                            <div class="sumUser">
+                                <span>Total Product: <span class="product<%= data.listOder[i][j].idUser %>"
+                                        style="font-weight: 500;"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
+                                <span>Total Price: <span class="price<%= data.listOder[i][j].idUser %>"
+                                        style="font-weight: 500; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>
+                            </div>
+                            <% }  %>
+                        </li>
+                        <% }   %>
                         <% } %>
+                    </ul>
+                    <% if(data && data.listOder) { %>
+                    <%  for(var i = 0; i < data.listOder.length; i++) { %>
+                    <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
+                    <div class="sum">
+                        <div class="d-flex flex-row-reverse ">
+                            <span>Total Product: <span class="prouct-count"
+                                    style="color: #d30808;font-weight: 600;"><%= data.listOder[i][j].totalProuct%></span></span>
+                        </div>
+                        <div class="d-flex flex-row-reverse ">
+                            <span>Total Price: <span class="price-count"
+                                    style="color: #d30808;font-weight: 600; text-decoration: underline;"><%= data.listOder[i][j].totalPrice.toLocaleString() %>đ</span></span>
+                        </div>
+                    </div>
+                    <% break; } %>
+                    <%  break; } %>
+                    <% } %>
                 </div>
             </nav>
 
@@ -108,7 +119,7 @@
         </div>
     </div>
 
-    
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-toggle="modal" data-target="#myModal">
@@ -137,49 +148,30 @@
         </div>
     </div>
 
-    <div class="modal fade" id="errdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
+    <div class="modal fade" id="errdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">WARNING</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <h5 class="modal-title" id="exampleModalLongTitle">WARNING</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                        You are not authorized to delete
+                    You are not authorized to delete
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-              </div>
             </div>
-          </div>
-
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.12.0/js/md5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         var base_url = location.protocol + "//" + document.domain + ":" + location.port;
-        function randomString() {
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var string_length = 8;
-            var randomstring = '';
-            for (var i = 0; i < string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum, rnum + 1);
-            }
-            return randomstring;
-        }
         var socket = io.connect(base_url);
-        $(document).ready(function () {
-            $('#save').on('click', function () {
-                let data = {
-                    userName: $('#useName').val(),
-                    id: randomString()
-                }
-                setCookie('food', data, 1);
-                $('#exampleModalCenter').modal('toggle')
-            });
-        });
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -220,53 +212,77 @@
                 $('#exampleModalCenter').modal('show')
             }
         }
-        function deleteOrder(idFood){
+        function deleteOrder(idFood) {
             var user = getCookie("food");
-            var order = idFood.split('-')[1];
-            var getuser = JSON.parse(user);
-            if(order === getuser.id){
-            var data = {
-                user: getuser.userName,
-                idUser: getuser.id,
-                idfood: idFood.split('-')[0]
+            if (user != "") {
+                var getuser = JSON.parse(user);
+                if (getuser.userName != "") {
+                    var order = idFood.split('-')[1];
+                    if (order === getuser.id) {
+                        var data = {
+                            user: getuser.userName,
+                            idUser: getuser.id,
+                            idfood: idFood.split('-')[0]
+                        }
+                        socket.emit('deleteOrder', data)
+                    }
+                } else {
+                    $('#exampleModalCenter').modal('show')
+                }
+            } else {
+                $('#exampleModalCenter').modal('show')
             }
-            socket.emit('deleteOrder', data)
-            }
-            else{
-                $('#errdelete').modal('show')
-            }
-                
         }
         $(() => {
+            $('#save').on('click', function () {
+                let data = {
+                    userName: $('#useName').val(),
+                    id: md5($('#useName').val().trim())
+                }
+                setCookie('food', data, 3650);
+                $('#exampleModalCenter').modal('toggle')
+            });
             socket.on('order', (data) => {
                 $('.prouct-count').text(data.__summary.totalProuct);
                 $('.price-count').text(`${data.__summary.totalPrice.toLocaleString()}đ`)
                 if ($('.listorder').text().indexOf(data.user) > -1) {
-                    if($('.title-'+data.idfood+'-'+data.id+'').text().indexOf(data.nameFood) > -1){
-                        let a = $('.title-'+data.idfood+'-'+data.id+' .amountOrder').text();
+                    if ($('.title-' + data.idfood + '-' + data.id + '').text().indexOf(data.nameFood) > -1) {
+                        let a = $('.title-' + data.idfood + '-' + data.id + ' .amountOrder').text();
                         let sum = parseInt(a) + 1;
-                        $('.title-'+data.idfood+'-'+data.id+' .amountOrder').text(sum);
-                    }else{
-                        $(`#${data.id}`).append('<div class="product product-'+data.idfood+'-'+data.id+'"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-'+data.idfood+'-'+data.id+' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon"><a onclick="deleteOrder(\''+data.idfood+'-'+data.id+'\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div>');
+                        $('.title-' + data.idfood + '-' + data.id + ' .amountOrder').text(sum);
+                    } else {
+                        $(`#${data.id}`).append('<div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Remove Food" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div>');
                     }
                     $(`.product${data.id}`).text(data.summaryUser.totalProuct);
                     $(`.price${data.id}`).text(`${data.summaryUser.totalPrice.toLocaleString()}đ`);
                 }
-                else
-                    $('.listorder').append('<li class="nav-item listOder"><div class=" userOrder">' + data.user + '</div><hr><div class=" listFood" id="' + data.id + '"><div class="product product-'+data.idfood+'-'+data.id+'"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-'+data.idfood+'-'+data.id+' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon"><a onclick="deleteOrder(\''+data.idfood+'-'+data.id+'\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div></div><div class="sumUser"><span >Total Product: <span class="product'+data.id+'" style="font-weight: 500;">'+ data.summaryUser.totalProuct +'</span></span><span>Total Price: <span class="price'+data.id+'" style="font-weight: 500; text-decoration: underline;"> '+data.summaryUser.totalPrice.toLocaleString()+ 'đ</span></span></div></li>');
+                else {
+                    $('.listorder').append('<li class="nav-item listOder"><div class=" userOrder">' + data.user + '</div><hr><div class=" listFood" id="' + data.id + '"><div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Remove Food" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div></div><div class="sumUser"><span >Total Product: <span class="product' + data.id + '" style="font-weight: 500;">' + data.summaryUser.totalProuct + '</span></span><span>Total Price: <span class="price' + data.id + '" style="font-weight: 500; text-decoration: underline;"> ' + data.summaryUser.totalPrice.toLocaleString() + 'đ</span></span></div></li>');
+                }
+                var user = getCookie("food");
+                if (user != ""){
+                    var getuser = JSON.parse(user);
+                if ($('.icon-' + getuser.id + '')[0]) {
+                    $('.icon-' + getuser.id + '').css({ 'display': 'block' })
+                }
+                }
             })
-            socket.on('orderDele', data =>{
-                $('.product-'+data.idfood+'-'+data.id+'').remove();
+            socket.on('orderDele', data => {
+                $('.product-' + data.idfood + '-' + data.id + '').remove();
                 $(`.product${data.id}`).text(data.summaryUser.totalProuct);
                 $(`.price${data.id}`).text(`${data.summaryUser.totalPrice.toLocaleString()}đ`);
                 $('.prouct-count').text(data.__summary.totalProuct);
                 $('.price-count').text(`${data.__summary.totalPrice.toLocaleString()}đ`)
             })
+            var user = getCookie("food");
+            if (user != ""){
+                var getuser = JSON.parse(user);
+                if ($('.icon-' + getuser.id + '')[0]) {
+                    $('.icon-' + getuser.id + '').css({ 'display': 'block' })
+                }
+            }
         })
     </script>
 </body>
+
 </html>
-
-
-
-

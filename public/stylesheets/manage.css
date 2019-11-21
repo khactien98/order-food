@@ -93,6 +93,7 @@ hr{
     margin: auto 0;
     float: right;
     font-size: 20px;
+    display: none;
 }
 .listOder .listFood .product .icon a i{
     color: #dde1e5;
