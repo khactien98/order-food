@@ -206,11 +206,10 @@ setInterval(async () => {
   if (dateObj.getDate() === 1) {
     const doc = new GoogleSpreadsheet('1LHIwjGz6d40fD2SgnNe6z8jojYHtZFph__AnmZeTjfc');
     await promisify(doc.useServiceAccountAuth)(creds);
-
     doc.addWorksheet({
     }, function (err, sheet) {
       // change a sheet's title
-      sheet.setTitle(year + "-" + month); //async
+      sheet.setTitle(`${year}-${month}`); //async
       //resize a sheet
       sheet.resize({ rowCount: 1656, colCount: 20 }); //async
       sheet.setHeaderRow(['Id User', 'Id food', 'User Name', 'Name Food', 'Total Product', 'Total Price', 'Date of Purchase']); //async
