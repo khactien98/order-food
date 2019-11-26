@@ -291,7 +291,7 @@ setInterval(async () => {
   } catch (error) {
     console.log('errr')
   }
-},10000);
+},60000);
 
 // set data in variable global
 setInterval(async () => {
