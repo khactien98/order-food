@@ -24,12 +24,7 @@ hr{
     font-size: large;
     font-weight: 500;
 }
-.listorder li:nth-child(even){
-    background: #edeff1;
-}
-.listorder li:nth-child(odd){
-    background: white;
-}
+
 .listorder li:nth-child(even) .listFood .product .icon a i{
     color: #d2d5d8
 }
@@ -41,7 +36,7 @@ hr{
     display: inline-block; width: 100%;
     border-bottom: 1px solid rgba(0,0,0,.125);
     margin-bottom: 15px;
- 
+    background: #edeff1;
 }
 .listOder .userOrder{
     width: 100%;
@@ -109,6 +104,7 @@ hr{
 }
 .sumUser{
     margin-bottom: 10px;
+  display: none;
 }
 .sumUser span:first-child{
     padding: 0 10px 0 10px;

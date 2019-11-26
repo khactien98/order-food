@@ -12,8 +12,8 @@
                     <ul class="nav flex-column mt-3 listorder" data-spy="scroll" data-offset="0">
                         <% if(data && data.listOder) { %>
                         <%  for(var i = 1; i < data.listOder.length; i++) { %>
-                        <li class="nav-item listOder">
-                            <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
+                        <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
+                        <li class="nav-item listOder order-<%= data.listOder[i][j].idUser %>">
                             <div class=" userOrder"><%= data.listOder[i][j].userName %></div>
                             <hr>
                             <div class=" listFood" id="<%= data.listOder[i][j].idUser %>">
@@ -31,20 +31,22 @@
 
                                         </span>
                                     </div>
-                                    <div class="col-md-2 icon icon-<%= data.listOder[i][j].idUser %>"><a href="#" title="Remove Food"
+                                    <div class="col-md-2 icon icon-<%= data.listOder[i][j].idUser %>"><a href="#"
+                                            title="Remove Food"
                                             onclick="deleteOrder('<%= product.idfood %>-<%= data.listOder[i][j].idUser %>')"><i
                                                 class="fas fa-minus-circle"></i></a></div>
                                 </div>
                                 <% })  %>
                             </div>
-                            <div class="sumUser">
+                            <div class="sumUser sumUser-<%= data.listOder[i][j].idUser %>">
                                 <span>Total Product: <span class="product<%= data.listOder[i][j].idUser %>"
                                         style="font-weight: 500;"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
                                 <span>Total Price: <span class="price<%= data.listOder[i][j].idUser %>"
                                         style="font-weight: 500; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>
                             </div>
-                            <% }  %>
+
                         </li>
+                        <% }  %>
                         <% }   %>
                         <% } %>
                     </ul>
@@ -109,7 +111,7 @@
                             </div>
                             <button type="button"
                                 onclick="order('<%= product.prod.id %>','<%= product.restaurant.name%>')"
-                                style="margin-top: 10px;" class="btn btn-block btn-outline-success">Add to cart</button>
+                                style="margin-top: 10px;" class="btn btn-block btn-outline-success">Order Now</button>
                         </div>
                     </div>
                     <% });   %>
@@ -205,7 +207,6 @@
                             idUser: getuser.id,
                             idfood: idFood.split('-')[0]
                         }
-                        console.log(data)
                         socket.emit('deleteOrder', data)
                     }
                 } else {
@@ -216,6 +217,7 @@
             }
         }
         $(() => {
+            // set cookie
             $('#save').on('click', function () {
                 let data = {
                     userName: $('#useName').val(),
@@ -224,7 +226,9 @@
                 setCookie('food', data, 3650);
                 $('#exampleModalCenter').modal('toggle')
             });
+            // send order to socketIO
             socket.on('order', (data) => {
+                var user = getCookie("food");
                 $('.prouct-count').text(data.__summary.totalProuct);
                 $('.price-count').text(`${data.__summary.totalPrice.toLocaleString()}đ`)
                 if ($('.listorder').text().indexOf(data.user) > -1) {
@@ -239,29 +243,52 @@
                     $(`.price${data.id}`).text(`${data.summaryUser.totalPrice.toLocaleString()}đ`);
                 }
                 else {
-                    $('.listorder').append('<li class="nav-item listOder"><div class=" userOrder">' + data.user + '</div><hr><div class=" listFood" id="' + data.id + '"><div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Remove Food" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div></div><div class="sumUser"><span >Total Product: <span class="product' + data.id + '" style="font-weight: 500;">' + data.summaryUser.totalProuct + '</span></span><span>Total Price: <span class="price' + data.id + '" style="font-weight: 500; text-decoration: underline;"> ' + data.summaryUser.totalPrice.toLocaleString() + 'đ</span></span></div></li>');
+                    $('.listorder').append('<li class="nav-item listOder order-' + data.id + '"><div class=" userOrder">' + data.user + '</div><hr><div class=" listFood" id="' + data.id + '"><div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Remove Food" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div></div><div class="sumUser-' + data.id + ' sumUser "><span >Total Product: <span class="product' + data.id + '" style="font-weight: 500; padding: 0 10px 0 10px;">' + data.summaryUser.totalProuct + '</span></span><span>Total Price: <span class="price' + data.id + '" style="font-weight: 500; text-decoration: underline;"> ' + data.summaryUser.totalPrice.toLocaleString() + 'đ</span></span></div></li>');
+
                 }
-                var user = getCookie("food");
-                if (user != ""){
+                // var user = getCookie("food");
+
+                if (user != "") {
                     var getuser = JSON.parse(user);
-                if ($('.icon-' + getuser.id + '')[0]) {
-                    $('.icon-' + getuser.id + '').css({ 'display': 'block' })
+                    if ($('.icon-' + getuser.id + '')[0]) {
+                        $('.icon-' + getuser.id + '').css({ 'display': 'block' });
+                        $(`.order-${getuser.id}`).css({ 'background': 'white' })
+                    }
+                    if ($(`.product${getuser.id}`).text() == 1) {
+                        $(`.sumUser-${getuser.id}`).css({ 'display': 'none' })
+                    } else $(`.sumUser-${getuser.id}`).css({ 'display': 'block' })
                 }
-                }
+
             })
+            // delete order 
             socket.on('orderDele', data => {
                 $('.product-' + data.idfood + '-' + data.id + '').remove();
                 $(`.product${data.id}`).text(data.summaryUser.totalProuct);
                 $(`.price${data.id}`).text(`${data.summaryUser.totalPrice.toLocaleString()}đ`);
                 $('.prouct-count').text(data.__summary.totalProuct);
-                $('.price-count').text(`${data.__summary.totalPrice.toLocaleString()}đ`)
+                $('.price-count').text(`${data.__summary.totalPrice.toLocaleString()}đ`);
+                var user = getCookie("food");
+                if (user != "") {
+                    // hidden sum if order = 1
+                    if ($(`.product${getuser.id}`).text() == 1) {
+                        $(`.sumUser-${getuser.id}`).css({ 'display': 'none' })
+                    } else  $(`.sumUser-${getuser.id}`).css({ 'display': 'block' })
+                }
             })
             var user = getCookie("food");
-            if (user != ""){
+
+            if (user != "") {
                 var getuser = JSON.parse(user);
+                $(`.order-${getuser.id}`).css({ 'background': 'white' })
+                // hidden icon remote
                 if ($('.icon-' + getuser.id + '')[0]) {
-                    $('.icon-' + getuser.id + '').css({ 'display': 'block' })
+                    $('.icon-' + getuser.id + '').css({ 'display': 'block' });
+                   
                 }
+                // hidden sum if order = 1
+                if ($(`.product${getuser.id}`).text() == 1) {
+                    $(`.sumUser-${getuser.id}`).css({ 'display': 'none' })
+                }else  $(`.sumUser-${getuser.id}`).css({ 'display': 'block' })
             }
         })
     </script>

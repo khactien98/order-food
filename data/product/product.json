@@ -28,6 +28,13 @@
         "idRestaurant": 1
     },
     {
+        "id": "8",
+        "name": "Nạc Vai Sốt Cà Chua",
+        "image": "p8.jpg",
+        "price": 25000,
+        "idRestaurant": 3
+    },
+    {
         "id": "4",
         "name": "Cơm Nạc Vai Rim Tiêu",
         "image": "p4.jpg",
@@ -84,13 +91,6 @@
         "idRestaurant": 1
     },
     {
-        "id": "8",
-        "name": "Nạc Vai Sốt Cà Chua",
-        "image": "p8.jpg",
-        "price": 30000,
-        "idRestaurant": 3
-    },
-    {
         "id": "9",
         "name": "Cơm Gà Rang Gừng",
         "image": "p9.jpg",
@@ -103,6 +103,20 @@
         "image": "p10.jpg",
         "price": 30000,
         "idRestaurant": 3
+    },
+    {
+        "id": "22",
+        "name": "Mỳ Xào Bò",
+        "image": "p21.jpg",
+        "price": 30000,
+        "idRestaurant": 1
+    },
+    {
+        "id": "20",
+        "name": "Cơm Bò Hầm",
+        "image": "p20.jpg",
+        "price": 30000,
+        "idRestaurant": 1
     }
     ,
     {
@@ -135,10 +149,11 @@
         "idRestaurant": 1
     },
     {
-        "id": "20",
-        "name": "Cơm Bò Hầm",
-        "image": "p20.jpg",
+        "id": "21",
+        "name": "Mỳ Xào Bò",
+        "image": "p21.jpg",
         "price": 35000,
         "idRestaurant": 1
     }
+   
 ]

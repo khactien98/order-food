@@ -188,17 +188,19 @@ async function deleteSpreadsheet(iduser, idfood, username, namefoods, amount, pr
   const rows = await promisify(sheet.getRows)({
     query: `iduser = ${iduser} and  dateofpurchase = ${getdate()} and idfood = ${idfood}`
   })
-  if (rows[0].totalproduct > amount) {
-    rows[0].totalproduct = parseInt(rows[0].totalproduct) - parseInt(amount);
-    rows[0].totalPrice = parseInt(rows[0].totalprice) - parseInt(price) * parseInt(amount);
-    rows[0].save();
-  }
-  else {
-    rows[0].del();
+  if(rows.length != 0){
+    if (rows[0].totalproduct > amount) {
+      rows[0].totalproduct = parseInt(rows[0].totalproduct) - parseInt(amount);
+      rows[0].totalPrice = parseInt(rows[0].totalprice) - parseInt(price) * parseInt(amount);
+      rows[0].save();
+    }
+    else {
+      rows[0].del();
+    }
   }
 }
 
-// check new month in google sheet
+// check new sheet in google sheet
 setInterval(async () => {
   var dateObj = new Date();
   var month = dateObj.getMonth() + 1; //months from 1-12
@@ -228,8 +230,8 @@ setInterval(async () => {
     const rows = await promisify(sheet.getRows)({
       offset: 1
     });
-    if (typeof rows.splice(-1)[0] != 'undefined') {
-      var date = rows.splice(-1)[0].dateofpurchase;
+    if (typeof (rows.slice(-1)[0]) != 'undefined') {
+      var date = rows.slice(-1)[0].dateofpurchase;
       if (date != getdate() && date.length != 1) {
         console.log("New date")
         var row = {
@@ -271,7 +273,7 @@ setInterval(async () => {
   } catch (error) {
     console.log('errr')
   }
-}, 60000);
+}, 10000);
 
 // delete bill in google sheet
 setInterval(async () => {
@@ -279,18 +281,17 @@ setInterval(async () => {
     let deleterows = deletes;
     deletes = [];
     if (deleterows.length != 0) {
-
       for (let i = 0; i < deleterows.length; i++) {
+        //console.log(deleterows[i]);
         setTimeout(() => {
-          console.log(deleterows[i])
           deleteSpreadsheet(deleterows[i].iduser, deleterows[i].idfood, deleterows[i].username, deleterows[i].namefood, deleterows[i].totalproduct, deleterows[i].totalprice)
-        }, i * 2000);
+        }, i * 1000);
       }
     }
   } catch (error) {
     console.log('errr')
   }
-}, 120000);
+},10000);
 
 // set data in variable global
 setInterval(async () => {
