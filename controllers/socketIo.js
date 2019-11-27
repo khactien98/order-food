@@ -219,7 +219,6 @@ setInterval(async () => {
   }
 }, 500)
 
-
 // check new day in google sheet
 setInterval(async () => {
   try {
@@ -257,41 +256,35 @@ setInterval(async () => {
 
 }, 10000);
 
-// create bill in google sheet
+// write bill in google sheet
 setInterval(async () => {
   try {
     let createRows = createRow;
     createRow = [];
+    let deleterows = deletes;
+    deletes = [];
+    // create bill in google sheet
     if (createRows.length != 0) {
-
       for (let i = 0; i < createRows.length; i++) {
         setTimeout(() => {
           createSpreadsheet(createRows[i].iduser, createRows[i].idfood, createRows[i].username, createRows[i].namefood, 1, createRows[i].totalprice)
         }, i * 2000);
       }
     }
-  } catch (error) {
-    console.log('errr')
-  }
-}, 10000);
-
-// delete bill in google sheet
-setInterval(async () => {
-  try {
-    let deleterows = deletes;
-    deletes = [];
+    // delete bill in google sheet
     if (deleterows.length != 0) {
-      for (let i = 0; i < deleterows.length; i++) {
-        //console.log(deleterows[i]);
-        setTimeout(() => {
-          deleteSpreadsheet(deleterows[i].iduser, deleterows[i].idfood, deleterows[i].username, deleterows[i].namefood, deleterows[i].totalproduct, deleterows[i].totalprice)
-        }, i * 1000);
-      }
+      setTimeout(() =>{
+        for (let i = 0; i < deleterows.length; i++) {
+          setTimeout(() => {
+            deleteSpreadsheet(deleterows[i].iduser, deleterows[i].idfood, deleterows[i].username, deleterows[i].namefood, deleterows[i].totalproduct, deleterows[i].totalprice)
+          }, i * 2000);
+        }
+      }, 2000 * createRows.length)
     }
   } catch (error) {
     console.log('errr')
   }
-},60000);
+}, 10000);
 
 // set data in variable global
 setInterval(async () => {
