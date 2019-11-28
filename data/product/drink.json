@@ -1,0 +1,57 @@
+[{
+    "id": "d1",
+    "name": "Chè Thái",
+    "image": "d1.jpg",
+    "price": 15000,
+    "idRestaurant": 5
+},
+{
+    "id": "d2",
+    "name": "Chè Dừa Thái",
+    "image": "d2.jpg",
+    "price": 15000,
+    "idRestaurant": 5
+},
+{
+    "id": "d3",
+    "name": "Chè Dừa Thái Sầu Riêng",
+    "image": "d3.jpg",
+    "price": 25000,
+    "idRestaurant": 5
+},
+{
+    "id": "d4",
+    "name": "Cammen Hoa Quả",
+    "image": "d4.jpg",
+    "price": 20000,
+    "idRestaurant": 5
+},
+{
+    "id": "d5",
+    "name": "Sữa Chua Mít",
+    "image": "d5.jpg",
+    "price": 20000,
+    "idRestaurant": 5
+},
+{
+    "id": "d6",
+    "name": "Sữa Chua Hoa Quả",
+    "image": "d6.jpg",
+    "price": 20000,
+    "idRestaurant": 5
+},
+{
+    "id": "d7",
+    "name": "Sữa Chua Dầm",
+    "image": "d8.jpg",
+    "price": 20000,
+    "idRestaurant": 5
+},
+{
+    "id": "d8",
+    "name": "Sữa Chua Trân Châu Nếp Cẩm",
+    "image": "d8.jpg",
+    "price": 15000,
+    "idRestaurant": 5
+}
+]

@@ -3,7 +3,6 @@
 <%- include('layout/header'); %>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-3 d-none d-md-block bg-light sidebar">
@@ -14,7 +13,6 @@
                         <%  for(var i = 1; i < data.listOder.length; i++) { %>
                         <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
                         <li class="nav-item listOder order-<%= data.listOder[i][j].idUser %>">
-
                             <div class=" userOrder"><%= data.listOder[i][j].userName %></div>
                             <hr>
                             <div class=" listFood" id="<%= data.listOder[i][j].idUser %>">
@@ -37,14 +35,13 @@
                                             onclick="deleteOrder('<%= product.idfood %>-<%= data.listOder[i][j].idUser %>')"><i
                                                 class="fas fa-minus-circle"></i></a></div>
                                 </div>
-
                                 <% })  %>
                             </div>
                             <div class="sumUser sumUser-<%= data.listOder[i][j].idUser %>">
                                 <span>Total Product: <span class="product<%= data.listOder[i][j].idUser %>"
                                         style="font-weight: 500;"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
                                 <span>Total Price: <span class="price<%= data.listOder[i][j].idUser %>"
-                                        style="font-weight: 500; text-decoration: underline; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>
+                                        style="font-weight: 500; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>
                             </div>
 
                         </li>
@@ -57,12 +54,12 @@
                     <%  for(var j = 1; j < data.listOder[i].length; j++) { %>
                     <div class="sum">
                         <div class="d-flex flex-row-reverse ">
-                            <span>Total Product: <span
-                                    class="prouct-count"><%= data.listOder[i][j].totalProuct%></span></span>
+                            <span>Total Product: <span class="prouct-count"
+                                    style="color: #d30808;font-weight: 600;"><%= data.listOder[i][j].totalProuct%></span></span>
                         </div>
                         <div class="d-flex flex-row-reverse ">
-                            <span>Total Price: <span
-                                    class="price-count"><%= data.listOder[i][j].totalPrice.toLocaleString() %>đ</span></span>
+                            <span>Total Price: <span class="price-count"
+                                    style="color: #d30808;font-weight: 600; text-decoration: underline;"><%= data.listOder[i][j].totalPrice.toLocaleString() %>đ</span></span>
                         </div>
                     </div>
                     <% break; } %>
@@ -76,13 +73,17 @@
                 <div class="d-flex justify-content-around align-items-center pt-3 pb-2 mb-3 border-bottom">
 
                     <div class="btn-toolbar mb-2 mb-md-0">
-
-                        <div class="dropdown">
+                        <div style="margin-right: 10px;">
+                            <a class="btn btn-secondary " href="/" role="button">Order Rice</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-secondary " href="/fastfood" role="button">Order Fast Food</a>
+                        </div>
+                        <!-- <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="/sdfdf" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Restaurant
                             </a>
-
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="/">All</a>
                                 <% if(data) { %>
@@ -91,7 +92,7 @@
                                 <% });   %>
                                 <% } %>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
@@ -102,16 +103,17 @@
                         <div class="card-body">
                             <div class="product-img">
                                 <img style="width: 208.35px; display: block; height: 139.43px;"
-                                    src="assets/img/product/<%= product.image %>" alt="">
+                                    src="assets/img/product/<%= product.prod.image %>" alt="">
                             </div>
                             <div class="description">
-                                <span class="nameFood"><%= product.name %></span><br />
-                                <span>Restaurant: <span style="font-weight: 500;"><%= data.detail %></span>
+                                <span class="nameFood"><%= product.prod.name %></span><br />
+                                <span>Restaurant: <span style="font-weight: 500;"><%= product.restaurant.name %></span>
                                 </span><br />
                                 <span>Price: <span
-                                        style="font-weight: 500; text-decoration: underline; color: #d30808;"><%= product.price.toLocaleString() %>đ</span></span>
+                                        style="font-weight: 500; text-decoration: underline; color: #d30808;"><%= product.prod.price.toLocaleString() %>đ</span></span>
                             </div>
-                            <button type="button" onclick="order('<%= product.id %>','<%= data.detail %>')"
+                            <button type="button"
+                                onclick="order('<%= product.prod.id %>','<%= product.restaurant.name%>')"
                                 style="margin-top: 10px;" class="btn btn-block btn-outline-success">Order Now</button>
                         </div>
                     </div>
@@ -121,9 +123,6 @@
             </main>
         </div>
     </div>
-
-
-
 
 
     <!-- Modal -->

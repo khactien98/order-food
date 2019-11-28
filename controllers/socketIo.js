@@ -13,11 +13,18 @@ bills.__summary = {
 var createRow = [];
 var deletes = [];
 const order = async (io) => {
-  var product = JSON.parse(fs.readFileSync('./data/product/product.json'));
+  var rice = JSON.parse(fs.readFileSync('./data/product/product.json'));
+  var tea = JSON.parse(fs.readFileSync('./data/product/drink.json'));
+  var products;
   io.on('connection', function (socket) {
     console.log('a user connected');
     socket.on('infoOrder', async (result) => {
-      product.forEach(async element => {
+      let check = await result.food.slice(0, 1);
+      if(check === 'r'){
+        products = rice;
+      }else if(check === 'd')
+      products = tea;
+      products.forEach(async element => {
         if (element.id === result.food) {
           // push bill in valible google sheet
           createRow.push({
@@ -277,14 +284,14 @@ setInterval(async () => {
         for (let i = 0; i < deleterows.length; i++) {
           setTimeout(() => {
             deleteSpreadsheet(deleterows[i].iduser, deleterows[i].idfood, deleterows[i].username, deleterows[i].namefood, deleterows[i].totalproduct, deleterows[i].totalprice)
-          }, i * 2000);
+          }, i * 1000);
         }
       }, 2000 * createRows.length)
     }
   } catch (error) {
     console.log('errr')
   }
-}, 10000);
+}, 60000);
 
 // set data in variable global
 setInterval(async () => {
