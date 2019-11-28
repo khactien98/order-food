@@ -37,8 +37,8 @@
                                 </div>
                                 <% })  %>
                             </div>
-                            <div class="sumUser sumUser-<%= data.listOder[i][j].idUser %>">
-                                <span>Total Product: <span class="product<%= data.listOder[i][j].idUser %>"
+                            <div class="sumUser sumUser-<%= data.listOder[i][j].idUser %>" check="<%= data.listOder[i][j].__summary.totalProuct %>">
+                                <span>Total Product: <span class="products product<%= data.listOder[i][j].idUser %>"
                                         style="font-weight: 500;"><%= data.listOder[i][j].__summary.totalProuct %></span></span>
                                 <span>Total Price: <span class="price<%= data.listOder[i][j].idUser %>"
                                         style="font-weight: 500; text-decoration: underline;"><%= data.listOder[i][j].__summary.totalPrice.toLocaleString() %>đ</span></span>

@@ -104,7 +104,7 @@ hr{
 }
 .sumUser{
   margin-bottom: 10px;
-  display: block;
+display: block;
 }
 .sumUser span:first-child{
     padding: 0 10px 0 10px;
