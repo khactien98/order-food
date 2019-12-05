@@ -83,14 +83,14 @@
                     let sum = parseInt(a) + 1;
                     $('.title-' + data.idfood + '-' + data.id + ' .amountOrder').text(sum);
                 } else {
-                    $(`#${data.id}`).append('<div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Remove Food" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div>');
+                    $(`#${data.id}`).append('<div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Xóa" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')"><i class="fas fa-backspace"></i></a></div></div>');
                 }
                 $(`.product${data.id}`).text(data.summaryUser.totalProuct);
                 $(`.price${data.id}`).text(`${data.summaryUser.totalPrice.toLocaleString()}đ`);
                 $(`.sumUser-${data.id}`).attr('check', `${data.summaryUser.totalProuct}`)
             }
             else {
-                $('.listorder').append('<li class="nav-item listOder order-' + data.id + '"><div class=" userOrder">' + data.user + '</div><hr><div class="listFood" id="' + data.id + '"><div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Remove Food" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')" href="#"><i class="fas fa-minus-circle"></i></a></div></div></div><div check="1" class="sumUser-' + data.id + ' sumUser "><span >Total Product: <span class="product' + data.id + '" style="font-weight: 500; padding: 0 10px 0 10px;">' + data.summaryUser.totalProuct + '</span></span><span>Total Price: <span class="price' + data.id + '" style="font-weight: 500; text-decoration: underline;"> ' + data.summaryUser.totalPrice.toLocaleString() + 'đ</span></span></div></li>');
+                $('.listorder').append('<li class="nav-item listOder order-' + data.id + '"><div class=" userOrder">' + data.user + '</div><hr><div class="listFood" id="' + data.id + '"><div class="product product-' + data.idfood + '-' + data.id + '"><div class="col-md-2 image"><img src="assets/img/product/' + data.image + '"></div><div class="col-md-8 title-' + data.idfood + '-' + data.id + ' title"><span style="font-weight: 500;">' + data.nameFood + '</span><span><span style="color: #d30808;"><span class="amountOrder" style="color: #d30808;">1</span> x </span>' + data.price.toLocaleString() + 'đ</span></div><div class="col-md-2 icon icon-' + data.id + '"><a title="Xóa" onclick="deleteOrder(\'' + data.idfood + '-' + data.id + '\')"><i class="fas fa-backspace"></i></a></div></div></div><div check="1" class="sumUser-' + data.id + ' sumUser "><span >Total Product: <span class="product' + data.id + '" style="font-weight: 500; padding: 0 10px 0 10px;">' + data.summaryUser.totalProuct + '</span></span><span>Total Price: <span class="price' + data.id + '" style="font-weight: 500; text-decoration: underline;"> ' + data.summaryUser.totalPrice.toLocaleString() + 'đ</span></span></div></li>');
 
             }
             // var user = getCookie("food");
@@ -99,10 +99,11 @@
                 var getuser = JSON.parse(user);
                 if ($('.icon-' + getuser.id + '')[0]) {
                     $('.icon-' + getuser.id + '').css({ 'display': 'block' });
-                    $(`.order-${getuser.id}`).css({ 'background': 'white' })
+                    $(`.order-${getuser.id}`).css({ 'background': 'white', 'box-shadow': '0 10px 20px rgba(0,0,0,.19), 0 0px 6px rgba(0,0,0,.22)'})
                 }
 
             }
+             // if only 1 produc, hidden price anh sum
             $('.sumUser').each((i, el) => {
                 if ($(el).attr('check') == 1)
                     $(el).css({ 'display': 'none' })
@@ -119,7 +120,7 @@
             $('.price-count').text(`${data.__summary.totalPrice.toLocaleString()}đ`);
             $(`.sumUser-${data.id}`).attr('check', `${data.summaryUser.totalProuct}`)
             var user = getCookie("food");
-
+             // if only 1 produc, hidden price anh sum
             $('.sumUser').each((i, el) => {
                 if ($(el).attr('check') == 1)
                     $(el).css({ 'display': 'none' })
@@ -131,22 +132,19 @@
 
         if (user != "") {
             var getuser = JSON.parse(user);
-            $(`.order-${getuser.id}`).css({ 'background': 'white' })
+            $(`.order-${getuser.id}`).css({ 'background': 'white', 'box-shadow': '0 10px 20px rgba(0,0,0,.19), 0 0px 6px rgba(0,0,0,.22)'})
             // hidden icon remote
             if ($('.icon-' + getuser.id + '')[0]) {
                 $('.icon-' + getuser.id + '').css({ 'display': 'block' });
             }
 
         }
+        // if only 1 produc, hidden price anh sum
         $('.sumUser').each((i, el) => {
             if ($(el).attr('check') == 1)
                 $(el).css({ 'display': 'none' })
             else
                 $(el).css({ 'display': 'block' })
         })
-
-        // $.each(classList, function(index, item) {
-        //     console.log(index,item)
-        // });
     })
 </script>

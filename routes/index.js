@@ -4,8 +4,11 @@ var fs = require('fs');
 const NodeCache = require( "node-cache" );
 const myCache = new NodeCache();
 
+router.get('/', (req, res) =>{
+  res.render('main.ejs')
+})
 
-router.get('/',async (req, res) =>{
+router.get('/rice',async (req, res) =>{
 
     var order = await Object.entries(global.order);
   var product = await JSON.parse(fs.readFileSync('./data/product/product.json'));
@@ -23,10 +26,10 @@ router.get('/',async (req, res) =>{
       }
     }
   }
-  res.render('manage.ejs',{data: {product: produ, restaurant: restaurant, listOder: order}})
+  res.render('rice.ejs',{data: {product: produ, restaurant: restaurant, listOder: order}})
 })
 
-router.get('/fastfood',async (req, res) =>{
+router.get('/tea',async (req, res) =>{
 
     var order = await Object.entries(global.order);
   var product = await JSON.parse(fs.readFileSync('./data/product/drink.json'));
@@ -48,22 +51,23 @@ router.get('/fastfood',async (req, res) =>{
 })
 
 
-router.get('/:id', async (req, res) =>{
+// router.get('/:id', async (req, res) =>{
 
-    var order = await Object.entries(global.order);
-  var product = await JSON.parse(fs.readFileSync('./data/product/product.json'));
-  var restaurant = await JSON.parse(fs.readFileSync('./data/restaurant/restaurant.json'));
-  let produ = [];
-  let restau ;
-  product.forEach(element => {
-    if(element.idRestaurant == req.params.id)
-    produ.push(element);
-  });
-  restaurant.forEach(element => {
-    if(element.id == req.params.id)
-    restau = element.name;
-  });
-  res.render('typeProduct', {data: {product: produ, restaurant: restaurant, detail: restau, listOder: order}});
-})
+//     var order = await Object.entries(global.order);
+//   var product = await JSON.parse(fs.readFileSync('./data/product/product.json'));
+//   var restaurant = await JSON.parse(fs.readFileSync('./data/restaurant/restaurant.json'));
+//   let produ = [];
+//   let restau ;
+//   product.forEach(element => {
+//     if(element.idRestaurant == req.params.id)
+//     produ.push(element);
+//   });
+//   restaurant.forEach(element => {
+//     if(element.id == req.params.id)
+//     restau = element.name;
+//   });
+//   res.render('typeProduct', {data: {product: produ, restaurant: restaurant, detail: restau, listOder: order}});
+// })
+
 
 module.exports = router;
