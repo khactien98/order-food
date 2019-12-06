@@ -62,7 +62,16 @@
             $('#exampleModalCenter').modal('show')
         }
     }
-    $(() => {
+
+    $(document).ready(function () {
+    $(".search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $(".product").filter(function () {
+        $(this).toggle($(this).attr('name-product').toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
         // set cookie
         $('#save').on('click', function () {
             let data = {
@@ -146,5 +155,5 @@
             else
                 $(el).css({ 'display': 'block' })
         })
-    })
+   
 </script>

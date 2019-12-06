@@ -47,7 +47,7 @@ router.get('/tea',async (req, res) =>{
       }
     }
   }
-  res.render('drink.ejs',{data: {product: produ, restaurant: restaurant, listOder: order}})
+  res.render('tea.ejs',{data: {product: produ, restaurant: restaurant, listOder: order}})
 })
 
 

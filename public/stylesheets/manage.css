@@ -163,3 +163,19 @@ display: block;
     background-repeat: no-repeat;
     background-position: center;
 }
+.search{
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #f1f3f5;
+    background-color: #f1f3f5;
+    outline: none;
+    padding: 5px 18px 5px 18px;
+    position: relative;
+}
+.searchProduct span{
+    position: absolute;
+    font-size: 16px;
+    color: #008838;
+    top: 49px;
+    right: 35px;
+}
