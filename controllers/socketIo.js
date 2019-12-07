@@ -149,149 +149,149 @@ const order = async (io) => {
   });
 }
 
-// function getdate() {
-//   var dateObj = new Date();
-//   var month = dateObj.getMonth() + 1; //months from 1-12
-//   var day = dateObj.getDate();
-//   var year = dateObj.getFullYear();
-//   newdate = year + "-" + month + "-" + day;
-//   return newdate;
-// }
+function getdate() {
+  var dateObj = new Date();
+  var month = dateObj.getMonth() + 1; //months from 1-12
+  var day = dateObj.getDate();
+  var year = dateObj.getFullYear();
+  newdate = year + "-" + month + "-" + day;
+  return newdate;
+}
 
-// // function create with goodle sheet
-// async function createSpreadsheet(iduser, idfood, username, namefoods, amount, price) {
-//   const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
-//   await promisify(doc.useServiceAccountAuth)(creds);
-//   const info = await promisify(doc.getInfo)();
-//   const sheet = info.worksheets.slice(-1)[0];
-//   const rows = await promisify(sheet.getRows)({
-//     query: `iduser = ${iduser} and  dateofpurchase = ${getdate()} and idfood = ${idfood}`
-//   })
-//   if (rows.length === 0) {
-//     let row = {
-//       iduser: iduser,
-//       idfood: idfood,
-//       username: username,
-//       totalproduct: amount,
-//       totalprice: price,
-//       dateofpurchase: getdate(),
-//       namefood: [namefoods]
-//     }
-//     await promisify(sheet.addRow)(row)
-//   }
-//   else {
-//     rows[0].totalproduct = parseInt(rows[0].totalproduct) + parseInt(1);
-//     rows[0].totalPrice = parseInt(rows[0].totalprice) + parseInt(price);
-//     rows[0].save();
-//   }
-// }
+// function create with goodle sheet
+async function createSpreadsheet(iduser, idfood, username, namefoods, amount, price) {
+  const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
+  await promisify(doc.useServiceAccountAuth)(creds);
+  const info = await promisify(doc.getInfo)();
+  const sheet = info.worksheets.slice(-1)[0];
+  const rows = await promisify(sheet.getRows)({
+    query: `iduser = ${iduser} and  dateofpurchase = ${getdate()} and idfood = ${idfood}`
+  })
+  if (rows.length === 0) {
+    let row = {
+      iduser: iduser,
+      idfood: idfood,
+      username: username,
+      totalproduct: amount,
+      totalprice: price,
+      dateofpurchase: getdate(),
+      namefood: [namefoods]
+    }
+    await promisify(sheet.addRow)(row)
+  }
+  else {
+    rows[0].totalproduct = parseInt(rows[0].totalproduct) + parseInt(1);
+    rows[0].totalPrice = parseInt(rows[0].totalprice) + parseInt(price);
+    rows[0].save();
+  }
+}
 
-// // function delete with goodle sheet
-// async function deleteSpreadsheet(iduser, idfood, username, namefoods, amount, price) {
-//   const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
-//   await promisify(doc.useServiceAccountAuth)(creds);
-//   const info = await promisify(doc.getInfo)();
-//   const sheet = info.worksheets.slice(-1)[0];
-//   const rows = await promisify(sheet.getRows)({
-//     query: `iduser = ${iduser} and  dateofpurchase = ${getdate()} and idfood = ${idfood}`
-//   })
-//   if(rows.length != 0){
-//     if (rows[0].totalproduct > amount) {
-//       rows[0].totalproduct = parseInt(rows[0].totalproduct) - parseInt(amount);
-//       rows[0].totalPrice = parseInt(rows[0].totalprice) - parseInt(price) * parseInt(amount);
-//       rows[0].save();
-//     }
-//     else {
-//       rows[0].del();
-//     }
-//   }
-// }
+// function delete with goodle sheet
+async function deleteSpreadsheet(iduser, idfood, username, namefoods, amount, price) {
+  const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
+  await promisify(doc.useServiceAccountAuth)(creds);
+  const info = await promisify(doc.getInfo)();
+  const sheet = info.worksheets.slice(-1)[0];
+  const rows = await promisify(sheet.getRows)({
+    query: `iduser = ${iduser} and  dateofpurchase = ${getdate()} and idfood = ${idfood}`
+  })
+  if(rows.length != 0){
+    if (rows[0].totalproduct > amount) {
+      rows[0].totalproduct = parseInt(rows[0].totalproduct) - parseInt(amount);
+      rows[0].totalPrice = parseInt(rows[0].totalprice) - parseInt(price) * parseInt(amount);
+      rows[0].save();
+    }
+    else {
+      rows[0].del();
+    }
+  }
+}
 
-// // check new sheet in google sheet
-// setInterval(async () => {
-//   var dateObj = new Date();
-//   var month = dateObj.getMonth() + 1; //months from 1-12
-//   var year = dateObj.getFullYear();
-//   if (dateObj.getDate() === 1 && dateObj.getHours() === 0) {
-//     const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
-//     await promisify(doc.useServiceAccountAuth)(creds);
-//     doc.addWorksheet({
-//     }, function (err, sheet) {
-//       // change a sheet's title
-//       sheet.setTitle(`${year}-${month}`); //async
-//       //resize a sheet
-//       sheet.resize({ rowCount: 1656, colCount: 20 }); //async
-//       sheet.setHeaderRow(['Id User', 'Id food', 'User Name', 'Name Food', 'Total Product', 'Total Price', 'Date of Purchase']); //async
-//     })
-//   }
-// }, 1000 * 60 * 50)
+// check new sheet in google sheet
+setInterval(async () => {
+  var dateObj = new Date();
+  var month = dateObj.getMonth() + 1; //months from 1-12
+  var year = dateObj.getFullYear();
+  if (dateObj.getDate() === 1 && dateObj.getHours() === 0) {
+    const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
+    await promisify(doc.useServiceAccountAuth)(creds);
+    doc.addWorksheet({
+    }, function (err, sheet) {
+      // change a sheet's title
+      sheet.setTitle(`${year}-${month}`); //async
+      //resize a sheet
+      sheet.resize({ rowCount: 1656, colCount: 20 }); //async
+      sheet.setHeaderRow(['Id User', 'Id food', 'User Name', 'Name Food', 'Total Product', 'Total Price', 'Date of Purchase']); //async
+    })
+  }
+}, 1000 * 60 * 50)
 
-// // check new day in google sheet
-// setInterval(async () => {
-//   try {
-//     const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
-//     await promisify(doc.useServiceAccountAuth)(creds);
-//     const info = await promisify(doc.getInfo)();
-//     const sheet = info.worksheets.slice(-1)[0];
-//     const rows = await promisify(sheet.getRows)({
-//       offset: 1
-//     });
-//     if (typeof (rows.slice(-1)[0]) != 'undefined') {
-//       var date = rows.slice(-1)[0].dateofpurchase;
-//       if (date != getdate() && date.length != 1) {
-//         console.log("New date")
-//         var row = {
-//           iduser: ' ',
-//           idfood: ' ',
-//           username: ' ',
-//           totalproduct: ' ',
-//           totalprice: ' ',
-//           dateofpurchase: ' ',
-//           namefood: ' '
-//         }
-//         await promisify(sheet.addRow)(row);
-//         return bills = {
-//           __summary: {
-//             totalPrice: 0, totalProuct: 0
-//           }
-//         }
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
+// check new day in google sheet
+setInterval(async () => {
+  try {
+    const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
+    await promisify(doc.useServiceAccountAuth)(creds);
+    const info = await promisify(doc.getInfo)();
+    const sheet = info.worksheets.slice(-1)[0];
+    const rows = await promisify(sheet.getRows)({
+      offset: 1
+    });
+    if (typeof (rows.slice(-1)[0]) != 'undefined') {
+      var date = rows.slice(-1)[0].dateofpurchase;
+      if (date != getdate() && date.length != 1) {
+        console.log("New date")
+        var row = {
+          iduser: ' ',
+          idfood: ' ',
+          username: ' ',
+          totalproduct: ' ',
+          totalprice: ' ',
+          dateofpurchase: ' ',
+          namefood: ' '
+        }
+        await promisify(sheet.addRow)(row);
+        return bills = {
+          __summary: {
+            totalPrice: 0, totalProuct: 0
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.log(error)
+  }
 
-// }, 10000);
+}, 10000);
 
-// // write bill in google sheet
-// setInterval(async () => {
-//   try {
-//     let createRows = createRow;
-//     createRow = [];
-//     let deleterows = deletes;
-//     deletes = [];
-//     // create bill in google sheet
-//     if (createRows.length != 0) {
-//       for (let i = 0; i < createRows.length; i++) {
-//         setTimeout(() => {
-//           createSpreadsheet(createRows[i].iduser, createRows[i].idfood, createRows[i].username, createRows[i].namefood, 1, createRows[i].totalprice)
-//         }, i * 2000);
-//       }
-//     }
-//     // delete bill in google sheet
-//     if (deleterows.length != 0) {
-//       setTimeout(() =>{
-//         for (let i = 0; i < deleterows.length; i++) {
-//           setTimeout(() => {
-//             deleteSpreadsheet(deleterows[i].iduser, deleterows[i].idfood, deleterows[i].username, deleterows[i].namefood, deleterows[i].totalproduct, deleterows[i].totalprice)
-//           }, i * 1000);
-//         }
-//       }, 2000 * createRows.length)
-//     }
-//   } catch (error) {
-//     console.log('errr')
-//   }
-// }, 60000);
+// write bill in google sheet
+setInterval(async () => {
+  try {
+    let createRows = createRow;
+    createRow = [];
+    let deleterows = deletes;
+    deletes = [];
+    // create bill in google sheet
+    if (createRows.length != 0) {
+      for (let i = 0; i < createRows.length; i++) {
+        setTimeout(() => {
+          createSpreadsheet(createRows[i].iduser, createRows[i].idfood, createRows[i].username, createRows[i].namefood, 1, createRows[i].totalprice)
+        }, i * 2000);
+      }
+    }
+    // delete bill in google sheet
+    if (deleterows.length != 0) {
+      setTimeout(() =>{
+        for (let i = 0; i < deleterows.length; i++) {
+          setTimeout(() => {
+            deleteSpreadsheet(deleterows[i].iduser, deleterows[i].idfood, deleterows[i].username, deleterows[i].namefood, deleterows[i].totalproduct, deleterows[i].totalprice)
+          }, i * 1000);
+        }
+      }, 2000 * createRows.length)
+    }
+  } catch (error) {
+    console.log('errr')
+  }
+}, 60000);
 
 // set data in variable global
 setInterval(async () => {
