@@ -158,7 +158,7 @@ function getdate() {
   return newdate;
 }
 
-// function create with goodle sheet
+// function create row with goodle sheet
 async function createSpreadsheet(iduser, idfood, username, namefoods, amount, price) {
   const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
   await promisify(doc.useServiceAccountAuth)(creds);
@@ -186,7 +186,7 @@ async function createSpreadsheet(iduser, idfood, username, namefoods, amount, pr
   }
 }
 
-// function delete with goodle sheet
+// function delete row with goodle sheet
 async function deleteSpreadsheet(iduser, idfood, username, namefoods, amount, price) {
   const doc = new GoogleSpreadsheet('10YhEiGoKGyU4Zkf6Yrkk_OUTRPSYbenyRUVud7yFNDY');
   await promisify(doc.useServiceAccountAuth)(creds);
