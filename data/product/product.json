@@ -28,13 +28,6 @@
         "idRestaurant": 1
     },
     {
-        "id": "r8",
-        "name": "Nạc Vai Sốt Cà Chua",
-        "image": "p8.jpg",
-        "price": 25000,
-        "idRestaurant": 3
-    },
-    {
         "id": "r4",
         "name": "Nạc Vai Rim Tiêu",
         "image": "p4.jpg",
@@ -46,6 +39,13 @@
         "name": "Ba Chỉ Cháy Cạnh",
         "image": "p5.jpg",
         "price": 25000,
+        "idRestaurant": 3
+    },
+    {
+        "id": "r8",
+        "name": "Nạc Vai Sốt Cà Chua",
+        "image": "p8.jpg",
+        "price": 30000,
         "idRestaurant": 3
     },
     {

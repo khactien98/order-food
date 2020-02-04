@@ -63,6 +63,18 @@
             $('#exampleModalCenter').modal('show')
         }
     }
+    
+    $('#useName').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                let data = {
+            userName: $('#useName').val(),
+            id: md5($('#useName').val().trim())
+        }
+        setCookie('food', data, 3650);
+        $('#exampleModalCenter').modal('toggle')
+            }
+        });
     // set cookie
     $('#save').on('click', function () {
         let data = {
